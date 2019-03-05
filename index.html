@@ -85,7 +85,7 @@
 				<div class="row">
 					<phb v-for='list in musicList' v-bind:todo='list'>						
 					</phb>
-<!-- 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<!-- 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="phb">
 							<b-list-group>
 							  	<b-list-group-item button>
@@ -135,14 +135,14 @@
 	});
 	Vue.component('phb',{
 		props:['todo'],
-		template:"<div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'><line v-bind:t='todo'></line></div>",
+		template:"<div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'><div class='phb'><b-list-group><b-list-group-item button><h3>{{todo.name}}</h3></b-list-group-item><b-list-group-item button v-for='m in todo.list' v-bind:m='m'>{{m.songname}}</b-list-group-item></b-list-group</div></div>",
 
 	});
-	Vue.component('line',{
-	props:['t'],
-	template:"<div class='phb'><b-list-group><b-list-group-item button><h3>{{t.name}}</b-list-group-item><b-list-group-item button v-for='m in t.list' v-bind:m='m'>{{m.songname}}</b-list-group-item></b-list-group</div>",
+	// Vue.component('line',{
+	// 	props:['t'],
+	// 	template:"<div class='phb'><b-list-group><b-list-group-item button><h3>{{t.name}}</b-list-group-item><b-list-group-item button v-for='m in t.list' v-bind:m='m'>{{m.songname}}</b-list-group-item></b-list-group</div>",
 
-	});
+	// });
 	new Vue({
 		el:"#out",
 	    data() {
@@ -157,45 +157,45 @@
 				{text:'MV'}
 			],
 			musicList:[
-						{listid:'1',name:'飙升榜',list:[
-														{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
-														{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
-														{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'4',songname:'小幸运',songauthor:'Hebe'},
-														{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
-														{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
-														]
-					    },
-						{listid:'1',name:'飙升榜',list:[
-														{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
-														{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
-														{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'4',songname:'小幸运',songauthor:'Hebe'},
-														{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
-														{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
-														]
-					    },
-					    {listid:'1',name:'飙升榜',list:[
-														{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
-														{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
-														{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'4',songname:'小幸运',songauthor:'Hebe'},
-														{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
-														{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
-														{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
-														]
-					    },
+				{listid:'1',name:'飙升榜',list:[
+					{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
+					{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
+					{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'4',songname:'小幸运',songauthor:'Hebe'},
+					{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
+					{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
+					]
+				},
+				{listid:'1',name:'飙升榜',list:[
+					{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
+					{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
+					{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'4',songname:'小幸运',songauthor:'Hebe'},
+					{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
+					{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
+					]
+				},
+				{listid:'1',name:'飙升榜',list:[
+					{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
+					{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
+					{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'4',songname:'小幸运',songauthor:'Hebe'},
+					{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
+					{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
+					{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
+					]
+				},
 					]
 	      }
 	    },
