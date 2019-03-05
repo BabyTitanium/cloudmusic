@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>网易云音乐</title>
+	<link type="text/css" rel="stylesheet" href="http://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+	<link
+	  type="text/css"
+	  rel="stylesheet"
+	  href="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+	/>
+
+	<script src="http://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+	<script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
+	<script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+	<style type="text/css">
+		.topfix{
+			background-color: #232323;
+			color: #ffffff;
+		}
+		.topfix a{
+			color: #ffffff;
+		}
+		.wyy{
+			font-size: 18px;
+			font-weight: 500;			
+		}
+		.phb{
+			margin: 10px;
+			border:1px solid #dfdfdf;
+		}
+	</style>
+</head>
+<body>
+	<div id="out">
+		<topbar v-bind:items='items'></topbar>
+		<!-- <imageslide ></imageslide> -->
+		<template>
+		  <div class="container">
+		    <b-carousel
+		      id="carousel1"
+		      style="text-shadow: 1px 1px 2px #333;"
+		      controls
+		      indicators
+		      background="#ababab"
+		      :interval="4000"
+		      img-width="1024"
+		      img-height="480"
+		      v-model="slide"
+		      @sliding-start="onSlideStart"
+		      @sliding-end="onSlideEnd"
+		    >
+		      <!-- Text slides with image -->
+		      <b-carousel-slide
+		        caption="First slide"
+		        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+		        img-src="https://picsum.photos/1024/480/?image=52">
+		    </b-carousel-slide>
+
+		      <!-- Slides with custom text -->
+		      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
+		        <h1>Hello world!</h1>
+		      </b-carousel-slide>
+
+		      <!-- Slides with image only -->
+		      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58" >
+		      </b-carousel-slide>
+
+		      <!-- Slides with img slot -->
+		      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+		      <b-carousel-slide>
+		        <img
+		          slot="img"
+		          class="d-block img-fluid w-100"
+		          width="1024"
+		          height="480"
+		          src="https://picsum.photos/1024/480/?image=55"
+		          alt="image slot"
+		       />
+		      </b-carousel-slide>
+		    </b-carousel>
+		  </div>
+		</template>
+		<div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="phb">
+							<b-list-group>
+							  	<b-list-group-item button>
+							  		<img src=""/><h3>飙升榜</h3>
+							   </b-list-group-item>
+							   <b-list-group-item button>I am a button</b-list-group-item>
+							   <b-list-group-item button>Disabled button</b-list-group-item>
+							   <b-list-group-item button>This is a button too</b-list-group-item>
+							</b-list-group>							
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="phb">
+							dddd
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="phb">
+							dddd
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+	Vue.component('topbar',{
+		props:['items'],
+		template:"<div class='topfix'><div class='container'><b-nav><b-nav-item active class='wyy'>网易云音乐</b-nav-item><b-nav-item v-for='item in items'>{{item.text}}</b-nav-item></b-nav></div></div>",
+	})
+	new Vue({
+		el:"#out",
+	    data() {
+	      return {
+	        slide: 0,
+	        sliding: null,
+	        items:[
+				{text:'排行榜'},
+				{text:'歌手'},
+				{text:'歌单'},
+				{text:'专辑'},
+				{text:'	MV'}
+			]
+	      }
+	    },
+	    methods: {
+	      onSlideStart(slide) {
+	        this.sliding = true
+	      },
+	      onSlideEnd(slide) {
+	        this.sliding = false
+	      }
+	    }
+});
+</script>
+</html>
