@@ -8,10 +8,10 @@
 	  rel="stylesheet"
 	  href="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
 	/>
-
 	<script src="http://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
 	<script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
 	<script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 	<style type="text/css">
 		.topfix{
 			background-color: #232323;
@@ -156,48 +156,46 @@
 				{text:'专辑'},
 				{text:'MV'}
 			],
-			musicList:[
-				{listid:'1',name:'飙升榜',list:[
-					{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
-					{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
-					{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'4',songname:'小幸运',songauthor:'Hebe'},
-					{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
-					{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
-					]
-				},
-				{listid:'1',name:'飙升榜',list:[
-					{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
-					{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
-					{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'4',songname:'小幸运',songauthor:'Hebe'},
-					{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
-					{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
-					]
-				},
-				{listid:'1',name:'飙升榜',list:[
-					{songid:'1',songname:'一百万个可能',songauthor:'克里斯汀'},
-					{songid:'2',songname:'另一个天堂',songauthor:'王力宏'},
-					{songid:'3',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'4',songname:'小幸运',songauthor:'Hebe'},
-					{songid:'5',songname:'沙漠骆驼',songauthor:'666'},
-					{songid:'6',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'7',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'8',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'9',songname:'恋爱ing',songauthor:'五月天'},
-					{songid:'10',songname:'恋爱ing',songauthor:'五月天'},
-					]
-				},
-					]
-	      }
+			musicList:[],
+			ids:[1,2,3],
+			
+	    }
+	},
+	        // created() {
+         //    this.$http.get("http://jsonplaceholder.typicode.com/todos")
+         //    .then((data) => {
+         //        // console.log(data)
+         //        this.arrs = data.body;
+         //     })
+         // },
+	    created:function(){
+	    
+	    	for(var i=0;i<this.ids.length;i++){
+	    		var id=this.ids[i];
+	    		var list1={};
+	    		(function(id){
+	    			
+	    			this.$http.get('http://wangyi.houserqu.com:3000/top/list?idx='+id).then(function(res){
+	    				var result=res.body;
+	    				var playlist=reslut.playlist;
+	    				list1['name']=playlist.name;
+	    				list1['id']=id;
+	    				var list2=[];
+	    				var tracks=playlist.tracks;
+	    				for(var j=0;j<10;j++){
+	    					var singlesonge={};
+	    					var song=tracks[j];
+	    					singlesonge['songname']=song.name;
+	    					singlesonge['songeid']=song.id;
+	    					singlesonge['author']=song.ar.name;
+	    					singlesonge['authorid']=song.ar.id;
+	    					list2.push(singlesonge);
+	    				}
+	    				list1['list']=list2;
+	    			});
+	    		})(id);
+	    	}
+	    	musicList.push(list1);
 	    },
 	    methods: {
 	      onSlideStart(slide) {
