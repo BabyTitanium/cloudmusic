@@ -32,6 +32,15 @@
         margin: 10px;
         border: 1px solid #dfdfdf;
       }
+      .musicPlayer{
+      	position: fixed;
+      	bottom: 0;
+      	width: 100%;
+
+      }
+      body{
+      	margin-bottom: 30px;
+      }
     </style>
   </head>
   <body>
@@ -132,6 +141,16 @@
           </div>
         </div>
       </div>
+      <div class="musicPlayer">
+      	<div class="container">
+      		<b-alert show variant="primary">
+      			<audio>
+      				<source  src="http://wangyi.houserqu.com:3000/song/url?id=33894312" type="audio/mpeg">
+      			</audio>
+      		</b-alert>
+
+      	</div>
+      </div>
     </div>
   </body>
   <script type="text/javascript">
@@ -164,16 +183,10 @@
             { text: "MV" }
           ],
           musicList: [],
-          ids: [6, 2, 3]
+          ids: [6, 2, 3],
+          playUrl:''
         }
       },
-      // created() {
-      //    this.$http.get("http://jsonplaceholder.typicode.com/todos")
-      //    .then((data) => {
-      //        // console.log(data)
-      //        this.arrs = data.body;
-      //     })
-      // },
       created: function() {
         var that = this
         for (var i = 0; i < that.ids.length; i++) {
